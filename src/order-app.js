@@ -2,7 +2,8 @@ import OrderRepresentation from './output/order-representation';
 import OrderItem from './output/order-item';
 import DiscountItem from './output/discount-item';
 import GoodsDisconut from './output/goods-discount';
-import { rules, goods, mumberType, userInfo } from './../test/resources/commom.json';
+import { levelCount } from './../src/output/utils'
+import { userInfo } from './../test/resources/commom.json';
 
 
 
@@ -27,7 +28,7 @@ export default class OrderApp {
     let totalPrice = 0;
     let discountPrice = 0;
     goodsList.forEach(item => {
-      totalPrice = totalPrice + item.price;
+      totalPrice = totalPrice + item.subTotal;
       orderItemList.push(new OrderItem({productNo: item.productNo, productName: item.productName, price: item.price, amount: item.amount, subTotal:item.subTotal}));
       // 如果存在优惠，则构造优惠信息
       if(item.discount && item.discount > 0){
@@ -39,8 +40,27 @@ export default class OrderApp {
       type: orderInfo.payments[0].type,
       amount: totalPrice - discountPrice
     }];
-    
-    
-    return (new OrderRepresentation({data})).toString();
+    // 获取用户积分等级和变化
+    let pointMessage = levelCount(orderInfo.memberId,totalPrice - discountPrice);
+    // let { oldMemberType, newMemberType, memberPointsIncreased, memberPoints } = levelCount(orderInfo.memberId,totalPrice)
+    const data = {
+      createTime: new Date(orderInfo.createTime),
+      orderId: orderInfo.orderId,
+      memberNo: orderInfo.memberId,
+      memberName: user.name,
+      oldMemberType: pointMessage.oldMemberType,
+      newMemberType: pointMessage.newMemberType,
+      memberPointsIncreased: pointMessage.memberPointsIncreased,
+      memberPoints:pointMessage.memberPoints,
+      orderItems: orderItemList,
+      totalPrice: totalPrice,
+      discounts: discountItemList,
+      totalDiscountPrice: discountPrice,
+      receivables: totalPrice - discountPrice,
+      payments: payments,
+      discountCards: orderInfo.discountCards
+    };
+    return (new OrderRepresentation(data)).toString();
   }
 }
+

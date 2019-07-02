@@ -35,37 +35,38 @@ export const levelCount = (memberId, totalPrice) => {
 		memberPointsIncreased: '',
 		memberPoints: ''
 	};
-	userInfo.forEach((user) => {
-		if (user.cardNumber === memberId) {
-			const levelId = user.level;
-			pointParam.oldMemberType = levelId; // 会员等级
-			return resetPoint(levelId, totalPrice, user.memberPoint);
-		}
+	let user = userInfo.find(item => {
+		return item.cardNumber === memberId;
 	});
+	const levelId =user.level;
+	pointParam.oldMemberType = mumberType.find(item => {
+		return item.id === user.level;
+	}).name; // 会员等级
+	
+	console.log("TCL: levelCount -> pointParam", pointParam)
+	return resetPoint(levelId, totalPrice, user.memberPoint);
 };
 
 // 计算增值积分
 const resetPoint = (levelId, totalPrice, memberPoint) => {
-	mumberType.forEach((memberCard) => {
-		if (memberCard.id === levelId) {
-			const newBasePoint = memberCard.basePoint * totalPrice;
-			pointParam.memberPointsIncreased = newBasePoint; // 本次消费积分
-			pointParam.memberPoints = memberPoint += newBasePoint; // 最新积分
-			return resetCardLevel(pointParam.memberPoints, memberCard, memberPoint);
-		}
+	let memberCard = mumberType.find(item => {
+		return item.id === levelId;
 	});
+	const newBasePoint = memberCard.basePoint * totalPrice;
+	pointParam.memberPointsIncreased = newBasePoint; // 本次消费积分
+	pointParam.memberPoints = memberPoint + newBasePoint; // 最新积分
+	return resetCardLevel(pointParam.memberPoints);
 };
 // 重置等级
 const resetCardLevel = (newMemberPoints) => {
 	mumberType.forEach((memberLevel) => {
 		if (memberLevel.maxPont) {
-			if (newMemberPoints >= memberLevel.minPoint & newMemberPoints < memberLevel.maxPont) {
+			
+			if (newMemberPoints >= memberLevel.minPoint && newMemberPoints < memberLevel.maxPont) {
 				pointParam.newMemberType = memberLevel.name; // 用户最近等级
-				return pointParam;
-			} else {
-				pointParam.newMemberType = mumberType[mumberType.length - 1].name; // 用户最新等级
-				return pointParam;
-			}
+			} 
 		}
 	});
+	pointParam.newMemberType = pointParam.newMemberType || '钻石卡';
+	return pointParam;
 };

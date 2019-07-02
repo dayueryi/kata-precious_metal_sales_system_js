@@ -34,8 +34,8 @@ export default class GoodsDisconut {
       productNo: this.product.productNo,
       productName: this.product.productName,
       discount: this.product.discount,
-      price: this.product.price.toFixed(2),
-      subTotal: this.product.subTotal.toFixed(2),
+      price: this.product.price - 0,
+      subTotal: this.product.subTotal - 0,
       amount: this.amount
     };
   }
