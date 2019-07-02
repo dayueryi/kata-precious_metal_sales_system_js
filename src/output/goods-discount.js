@@ -13,7 +13,7 @@ export default class GoodsDisconut {
       });
     this.amount = amount;
     this.product.subTotal = this.product.price * amount;
-    this.discountCards = discountCards;
+    this.discountCards = discountCards || [];
     this.priceList = [];
   }
 
