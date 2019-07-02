@@ -57,13 +57,13 @@ const resetPoint = (levelId, totalPrice, memberPoint) => {
 };
 // 重置等级
 const resetCardLevel = (newMemberPoints) => {
-	mumberType.forEach((memberType) => {
-		if (memberType.maxPont) {
-			if (newMemberPoints >= memberType.minPoint & newMemberPoints < memberType.maxPont) {
-				pointParam.newMemberType = memberType.name; // 用户最近等级
+	mumberType.forEach((memberLevel) => {
+		if (memberLevel.maxPont) {
+			if (newMemberPoints >= memberLevel.minPoint & newMemberPoints < memberLevel.maxPont) {
+				pointParam.newMemberType = memberLevel.name; // 用户最近等级
 				return pointParam;
 			} else {
-				pointParam.newMemberType = memberType[memberType.length - 1].name; // 用户最新等级
+				pointParam.newMemberType = mumberType[mumberType.length - 1].name; // 用户最新等级
 				return pointParam;
 			}
 		}
