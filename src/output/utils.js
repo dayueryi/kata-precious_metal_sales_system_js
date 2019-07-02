@@ -33,6 +33,7 @@ let pointParam;
    */
 // 获取用户当前卡等级
 export const levelCount = (memberId, totalPrice) => {
+	totalPrice = parseFloat(totalPrice);
 	pointParam = {
 		oldMemberType: '',
 		newMemberType: '',
@@ -68,6 +69,6 @@ const resetCardLevel = (newMemberPoints) => {
 			}
 		}
 	});
-	pointParam.newMemberType = pointParam.newMemberType || mumberType[mumberType.length - 1].name; // 用户最近等级
+	pointParam.newMemberType = pointParam.newMemberType || mumberType[mumberType.length - 1].name; // 用户最新等级
 	return pointParam;
 };
