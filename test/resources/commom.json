@@ -1,0 +1,109 @@
+{
+    "rules": {
+        "1": "可使用9折打折券",
+        "2": "可使用95折打折券",
+        "3": "第3件半价，满3送1",
+        "4": "每满1000减10",
+        "5": "每满2000减30",
+        "6": "每满3000元减350",
+        "7": "满3送1"
+    },
+    "goods": [{
+        "id": "001001",
+        "goosName": "园会五十国钱币册",
+        "unit": "册",
+        "price": 998.00,
+        "rules": []
+    }, {
+        "id": "001002",
+        "goosName": "2019北京世园会纪念银章大全40g",
+        "unit": "盒",
+        "price": 1380.00,
+        "rules": [1]
+    }, {
+        "id": "003001",
+        "goosName": "招财进宝",
+        "unit": "条",
+        "price": 1580.00,
+        "rules": [2]
+    }, {
+        "id": "003002",
+        "goosName": "水晶之恋",
+        "unit": "条",
+        "price": 980.00,
+        "rules": [3,7]
+    }, {
+        "id": "002002",
+        "goosName": "中国经典钱币套装",
+        "unit": "套",
+        "price": 998.00,
+        "rules": [4,5]
+    }, {
+        "id": "002001",
+        "goosName": "守扩之羽比翼双飞4.8g",
+        "unit": "条",
+        "price": 1080.00,
+        "rules": [2,3,7]
+    }, {
+        "id": "002003",
+        "goosName": "中国银象棋12g",
+        "unit": "套",
+        "price": 698.00,
+        "rules": [1,4,5,6]
+    }],
+    "mumberType": {
+        "normalCard": {
+            "id": "1",
+            "name": "普卡",
+            "basePoint": 1,
+            "minPoint": 0,
+            "maxPont": 10000
+        },
+        "goldCard": {
+            "id": "2",
+            "name": "金卡",
+            "basePoint": 1.5,
+            "minPoint": 10000,
+            "maxPont": 50000
+        },
+        "platinumCard": {
+            "id": "3",
+            "name": "白金卡",
+            "basePoint": 1.5,
+            "minPoint": 10000,
+            "maxPont": 50000
+        },
+        "diamondCard": {
+            "id": "4",
+            "name": "钻石卡",
+            "basePoint": 2,
+            "minPoint": 100000
+        }
+    },
+    "userInfo": [
+        {
+            "name": "马丁",
+            "level": "1",
+            "cardNumber": "6236609999",
+            "memberPoint": 9860
+        },
+        {
+            "name": "王立",
+            "level": "2",
+            "cardNumber": "6630009999",
+            "memberPoint": 48860
+        },
+        {
+            "name": "李想",
+            "level": "3",
+            "cardNumber": "8230009999",
+            "memberPoint": 98860
+        },
+        {
+            "name": "张三",
+            "level": "4",
+            "cardNumber": "9230009999",
+            "memberPoint": 198860
+        }
+    ]
+}
