@@ -14,14 +14,11 @@ export default class OrderApp {
     let user = userInfo.find((item) => {
       return item.cardNumber === orderInfo.memberId;
     });
-    // 获取订单商品
-    let goodsList = orderCommand.items;
-    // 获取订单使用优惠劵的信息
-    goodsList.map(item => {
-      let goodsDisconut = new GoodsDisconut();
-      return goodsDisconut.getGoodsMessage(item.product, item.amount, orderCommand.discountCards);
+    // 获取订单商品使用优惠劵的信息
+    let goodsList =orderInfo.items.map(item => {
+      let goodsDisconut = new GoodsDisconut(item.product, item.amount, orderInfo.discountCards);
+      return goodsDisconut.getGoodsMessage();
     });
-
     return (new OrderRepresentation({})).toString();
   }
 }
