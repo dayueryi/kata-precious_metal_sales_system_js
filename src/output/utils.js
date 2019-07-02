@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { promisify } from 'util';
+import {userInfo, mumberType} from '../../test/resources/commom.json';
 
 // 格式化日期
 export const formatDate = (date, formatStr) => {
@@ -23,3 +24,47 @@ export const formatDate = (date, formatStr) => {
 };
 
 export const readFile = promisify(fs.readFile);
+
+// 设置积分、等级返回值
+let pointParam = {
+	oldMemberType: '',
+	newMemberType: '',
+	memberPointsIncreased: '',
+	memberPoints: ''
+};
+// 获取用户当前卡等级
+export const levelCount = (memberId, totalPrice) => {
+	userInfo.forEach((user) => {
+		if (user.cardNumber === memberId) {
+			const levelId = user.level;
+			pointParam.oldMemberType = levelId; // 会员等级
+			resetPoint(levelId, totalPrice, user.memberPoint);
+		}
+	});
+};
+
+// 计算增值积分
+const resetPoint = (levelId, totalPrice, memberPoint) => {
+	mumberType.forEach((memberCard) => {
+		if (memberCard.id === levelId) {
+			const newBasePoint = memberCard.basePoint * totalPrice;
+			pointParam.memberPointsIncreased = newBasePoint; // 本次消费积分
+			pointParam.memberPoints = memberPoint += newBasePoint; // 最新积分
+			resetCardLevel(pointParam.memberPoints, memberCard, memberPoint);
+		}
+	});
+};
+// 重置等级
+const resetCardLevel = (newMemberPoints) => {
+	mumberType.forEach((memberType) => {
+		if (memberType.maxPont) {
+			if (newMemberPoints >= memberType.minPoint & newMemberPoints < memberType.maxPont) {
+				pointParam.newMemberType = memberType.name; // 用户最近等级
+				return pointParam;
+			} else {
+				pointParam.newMemberType = memberType[memberType.length - 1].name; // 用户最新等级
+				return pointParam;
+			}
+		}
+	});
+};
