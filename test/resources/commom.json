@@ -103,8 +103,8 @@
             "id": "3",
             "name": "白金卡",
             "basePoint": 1.5,
-            "minPoint": 10000,
-            "maxPont": 50000
+            "minPoint": 50000,
+            "maxPont": 100000
         },
         {
             "id": "4",
