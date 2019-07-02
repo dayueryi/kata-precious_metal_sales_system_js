@@ -51,35 +51,35 @@
         "price": 698.00,
         "rules": [1,4,5,6]
     }],
-    "mumberType": {
-        "normalCard": {
+    "mumberType":  [
+        {
             "id": "1",
             "name": "普卡",
             "basePoint": 1,
             "minPoint": 0,
             "maxPont": 10000
         },
-        "goldCard": {
+        {
             "id": "2",
             "name": "金卡",
             "basePoint": 1.5,
             "minPoint": 10000,
             "maxPont": 50000
         },
-        "platinumCard": {
+        {
             "id": "3",
             "name": "白金卡",
             "basePoint": 1.5,
             "minPoint": 10000,
             "maxPont": 50000
         },
-        "diamondCard": {
+        {
             "id": "4",
             "name": "钻石卡",
             "basePoint": 2,
             "minPoint": 100000
         }
-    },
+    ],
     "userInfo": [
         {
             "name": "马丁",
