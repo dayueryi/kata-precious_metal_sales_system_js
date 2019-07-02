@@ -26,19 +26,20 @@ export const formatDate = (date, formatStr) => {
 export const readFile = promisify(fs.readFile);
 
 // 设置积分、等级返回值
-let pointParam = {
-	oldMemberType: '',
-	newMemberType: '',
-	memberPointsIncreased: '',
-	memberPoints: ''
-};
+let pointParam;
 // 获取用户当前卡等级
 export const levelCount = (memberId, totalPrice) => {
+	pointParam = {
+		oldMemberType: '',
+		newMemberType: '',
+		memberPointsIncreased: '',
+		memberPoints: ''
+	};
 	userInfo.forEach((user) => {
 		if (user.cardNumber === memberId) {
 			const levelId = user.level;
 			pointParam.oldMemberType = levelId; // 会员等级
-			resetPoint(levelId, totalPrice, user.memberPoint);
+			return resetPoint(levelId, totalPrice, user.memberPoint);
 		}
 	});
 };
@@ -50,7 +51,7 @@ const resetPoint = (levelId, totalPrice, memberPoint) => {
 			const newBasePoint = memberCard.basePoint * totalPrice;
 			pointParam.memberPointsIncreased = newBasePoint; // 本次消费积分
 			pointParam.memberPoints = memberPoint += newBasePoint; // 最新积分
-			resetCardLevel(pointParam.memberPoints, memberCard, memberPoint);
+			return resetCardLevel(pointParam.memberPoints, memberCard, memberPoint);
 		}
 	});
 };
