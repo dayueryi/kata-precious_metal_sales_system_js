@@ -27,6 +27,10 @@ export const readFile = promisify(fs.readFile);
 
 // 设置积分、等级返回值
 let pointParam;
+  /**
+   * @param memberId           会员卡账号
+   * @param totalPrice         应付账款
+   */
 // 获取用户当前卡等级
 export const levelCount = (memberId, totalPrice) => {
 	pointParam = {
@@ -42,8 +46,6 @@ export const levelCount = (memberId, totalPrice) => {
 	pointParam.oldMemberType = mumberType.find(item => {
 		return item.id === user.level;
 	}).name; // 会员等级
-	
-	console.log("TCL: levelCount -> pointParam", pointParam)
 	return resetPoint(levelId, totalPrice, user.memberPoint);
 };
 
@@ -60,13 +62,12 @@ const resetPoint = (levelId, totalPrice, memberPoint) => {
 // 重置等级
 const resetCardLevel = (newMemberPoints) => {
 	mumberType.forEach((memberLevel) => {
-		if (memberLevel.maxPont) {
-			
+		if (memberLevel.maxPont) {			
 			if (newMemberPoints >= memberLevel.minPoint && newMemberPoints < memberLevel.maxPont) {
-				pointParam.newMemberType = memberLevel.name; // 用户最近等级
-			} 
+				pointParam.newMemberType = memberLevel.name;
+			}
 		}
 	});
-	pointParam.newMemberType = pointParam.newMemberType || '钻石卡';
+	pointParam.newMemberType = pointParam.newMemberType || mumberType[mumberType.length - 1].name; // 用户最近等级
 	return pointParam;
 };
