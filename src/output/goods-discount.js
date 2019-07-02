@@ -3,6 +3,9 @@ import { rules,goods } from './../../test/resources/commom.json'
 export default class GoodsDisconut {
   /**
    * 计算商品优惠的最大值
+   * @param productNo 产品编号
+   * @param amount 产品数量
+   * @param discountCards 优惠劵
    */
   constructor(productNo, amount, discountCards) {
     this.product = goods.find(item => {
@@ -65,7 +68,7 @@ export default class GoodsDisconut {
     
   }
   discountKind3(rule){
-    // 判断打折的优惠金额
+    // 判断满x送y件的优惠金额
     if(this.amount >= rule.needAmount){
       let discountNum = Math.floor(this.amount / rule.needAmount);
       let discountPrice = discountNum * this.product.price;
