@@ -1,4 +1,5 @@
 import OrderRepresentation from './output/order-representation';
+import GoodsDisconut from './output/goods-discount';
 import { rules, goods, mumberType, userInfo } from './../test/resources/commom.json';
 
 
@@ -16,7 +17,10 @@ export default class OrderApp {
     // 获取订单商品
     let goodsList = orderCommand.items;
     // 获取订单使用优惠劵的信息
-
+    goodsList.map(item => {
+      let goodsDisconut = new GoodsDisconut();
+      return goodsDisconut.getGoodsMessage(item.product, item.amount, orderCommand.discountCards);
+    });
 
     return (new OrderRepresentation({})).toString();
   }

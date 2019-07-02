@@ -3,12 +3,12 @@
         "1": {
             "kind": "0",
             "discount": 0.9,
-            "desc": "可使用9折打折券"
+            "desc": "9折券"
         },
         "2": {
             "kind": "0",
             "discount": 0.95,
-            "desc": "可使用95折打折券"
+            "desc": "95折券"
         },
         "3": {
             "kind": "1",
@@ -36,53 +36,53 @@
         },
         "7": {
             "kind": "3",
-            "discount": 1,
+            "discount": 350,
             "needAmount": 4,
             "desc": "满3送1"
         }
     },
     "goods": [{
-        "id": "001001",
-        "goosName": "园会五十国钱币册",
+        "productNo": "001001",
+        "productName": "园会五十国钱币册",
         "unit": "册",
         "price": 998.00,
         "rules": []
     }, {
-        "id": "001002",
-        "goosName": "2019北京世园会纪念银章大全40g",
+        "productNo": "001002",
+        "productName": "2019北京世园会纪念银章大全40g",
         "unit": "盒",
         "price": 1380.00,
-        "rules": [1]
+        "rules": ["1"]
     }, {
-        "id": "003001",
-        "goosName": "招财进宝",
+        "productNo": "003001",
+        "productName": "招财进宝",
         "unit": "条",
         "price": 1580.00,
-        "rules": [2]
+        "rules": ["2"]
     }, {
-        "id": "003002",
-        "goosName": "水晶之恋",
+        "productNo": "003002",
+        "productName": "水晶之恋",
         "unit": "条",
         "price": 980.00,
-        "rules": [3,7]
+        "rules": ["3","7"]
     }, {
-        "id": "002002",
-        "goosName": "中国经典钱币套装",
+        "productNo": "002002",
+        "productName": "中国经典钱币套装",
         "unit": "套",
         "price": 998.00,
-        "rules": [4,5]
+        "rules": ["4","5"]
     }, {
-        "id": "002001",
-        "goosName": "守扩之羽比翼双飞4.8g",
+        "productNo": "002001",
+        "productName": "守扩之羽比翼双飞4.8g",
         "unit": "条",
         "price": 1080.00,
-        "rules": [2,3,7]
+        "rules": ["2","3","7"]
     }, {
-        "id": "002003",
-        "goosName": "中国银象棋12g",
+        "productNo": "002003",
+        "productName": "中国银象棋12g",
         "unit": "套",
         "price": 698.00,
-        "rules": [1,4,5,6]
+        "rules": ["1","4","5","6"]
     }],
     "mumberType":  [
         {
